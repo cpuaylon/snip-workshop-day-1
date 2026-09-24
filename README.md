@@ -23,10 +23,29 @@ the CLI, `BASE_URL`/`PORT` env vars for the server itself).
 | `backend`  | Zero-dependency Bun server (`server.js`)     | `backend/`        |
 | `frontend` | Angular 19 web app (`snip-frontend`)         | `frontend/`       |
 | `cli`      | Zero-dependency Node CLI (`cli.js`)          | `cli/`            |
+| `bundle`   | **Generated** deployable release (see below) | `bundle/`         |
 | `main`     | This aggregator — `.gitmodules` + this README | —                |
 
 Each submodule folder is a full clone of this repository, checked out to its
 own branch, so it can be developed and pushed independently.
+
+## The `bundle` branch (generated, do not hand-edit)
+
+`bundle` is a release artifact assembled by [`scripts/build-bundle.mjs`](scripts/build-bundle.mjs):
+it updates the `backend`/`frontend`/`cli` submodules, builds the Angular app,
+and copies `server.js` + `cli.js` + the built UI into a single deployable
+folder (`.env` with `PUBLIC_DIR=./public` puts the Bun server into
+also-serve-the-UI mode), alongside a `package.json`, `Dockerfile`,
+`.dockerignore`, and `railway.json`. Never edit files inside `bundle/` by
+hand — rerun the script instead.
+
+```bash
+node scripts/build-bundle.mjs          # assemble + commit locally
+node scripts/build-bundle.mjs --push   # also push bundle and main
+```
+
+The script is safe to re-run: it skips commits when nothing changed, and
+`--push` is a no-op when there is nothing new to push.
 
 ## Clone
 
