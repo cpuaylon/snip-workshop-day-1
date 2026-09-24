@@ -1,62 +1,116 @@
 .page {
-  max-width: 640px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  font-family: system-ui, sans-serif;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 4rem 1rem 3rem;
 }
 
-h1 {
-  margin-bottom: 0;
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 2rem 0 3rem;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: -4rem -2rem auto -2rem;
+  height: 20rem;
+  background: var(--accent-gradient);
+  filter: blur(80px);
+  opacity: 0.35;
+  z-index: -1;
+  border-radius: 999px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 2.75rem;
+  line-height: 1.1;
+  font-weight: 700;
 }
 
 .subtitle {
-  color: #666;
-  margin-top: 0.25rem;
+  color: var(--muted);
+  margin: 0.75rem 0 2rem;
+  font-size: 1rem;
 }
 
 .link-form {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
-  margin: 1.5rem 0;
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 .link-form input {
   flex: 1;
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem 0;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  font-family: inherit;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.link-form input::placeholder {
+  color: var(--muted);
+}
+
+.link-form:focus-within {
+  border-color: var(--border-strong);
+  box-shadow: 0 0 0 3px rgba(246, 82, 140, 0.35);
 }
 
 .link-form button {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
   border: none;
-  border-radius: 4px;
-  background: #1a73e8;
+  border-radius: 999px;
+  background: var(--accent-gradient);
   color: #fff;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .link-form button:disabled {
-  background: #9bb8e6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 .message {
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  margin: 1rem auto 0;
+  max-width: fit-content;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+
+.message a {
+  color: inherit;
 }
 
 .message.error {
-  background: #fdecea;
-  color: #b3261e;
+  color: var(--error);
 }
 
 .message.success {
-  background: #e6f4ea;
-  color: #1e7e34;
+  color: var(--success);
+}
+
+.table-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 20px 40px rgba(0, 0, 0, 0.35);
+  padding: 0.5rem 1rem;
 }
 
 .links-table {
@@ -64,11 +118,34 @@ h1 {
   border-collapse: collapse;
 }
 
-.links-table th,
-.links-table td {
+.links-table th {
   text-align: left;
-  padding: 0.5rem;
-  border-bottom: 1px solid #eee;
+  padding: 1rem 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.links-table td {
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+
+.links-table tr:last-child td {
+  border-bottom: none;
+}
+
+.links-table a {
+  color: var(--accent-pink);
+  text-decoration: none;
+}
+
+.links-table a:hover {
+  text-decoration: underline;
 }
 
 .url-cell {
@@ -76,9 +153,11 @@ h1 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--muted);
 }
 
 .empty-row {
-  color: #999;
+  color: var(--muted);
   text-align: center;
+  padding: 1.5rem 0.5rem;
 }
